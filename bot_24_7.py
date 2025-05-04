@@ -849,7 +849,7 @@ async def message_handler(event):
     current_time = time.time()
     # If we've seen a message from this user in the last 20 seconds, silently ignore it
     # This extremely strict limit should prevent all flood wait errors related to receiving messages.
-    if user_id in last_command_time and (current_time - last_command_time.get(user_id, 0)) < 20:
+    if user_id in last_command_time and (current_time - last_command_time.get(user_id, 0)) < 2:
         logger.info(f"Strict spam protection: Ignoring message from user {user_id}")
         return
     last_command_time[user_id] = current_time # Update last command time for ANY incoming message
